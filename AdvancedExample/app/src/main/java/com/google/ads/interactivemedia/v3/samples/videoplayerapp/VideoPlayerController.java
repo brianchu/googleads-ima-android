@@ -3,6 +3,7 @@
 package com.google.ads.interactivemedia.v3.samples.videoplayerapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +106,9 @@ public class VideoPlayerController {
                             // ignored for VMAP or ad rules playlists, as the SDK will
                             // automatically start executing the playlist.
                             mAdsManager.start();
+
+                            Log.d("debug", "[onAdEvent] isCustomPlaybackUsed " + mAdsManager.isCustomPlaybackUsed());
+
                             break;
                         case CONTENT_PAUSE_REQUESTED:
                             // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before
@@ -134,7 +138,11 @@ public class VideoPlayerController {
                 }
             });
             mAdsManager.init();
+
+            Log.d("debug", "[onAdsManagerLoaded] isCustomPlaybackUsed " + mAdsManager.isCustomPlaybackUsed());
+
         }
+
     }
 
     public VideoPlayerController(Context context,
