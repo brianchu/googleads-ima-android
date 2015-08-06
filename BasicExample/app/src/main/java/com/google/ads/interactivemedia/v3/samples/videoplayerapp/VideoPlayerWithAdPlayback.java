@@ -105,12 +105,12 @@ public class VideoPlayerWithAdPlayback {
             @Override
             public VideoProgressUpdate getAdProgress() {
                 if (!mIsAdDisplayed || mVideoPlayer.getDuration() <= 0) {
-                    Log.d("debug", "VideoProgressUpdate (ad) -> VIDEO_TIME_NOT_READY");
+                    debug("VideoProgressUpdate (ad) -> VIDEO_TIME_NOT_READY");
                     return VideoProgressUpdate.VIDEO_TIME_NOT_READY;
                 }
                 VideoProgressUpdate videoProgressUpdate = new VideoProgressUpdate(mVideoPlayer.getCurrentPosition(),
                         mVideoPlayer.getDuration());
-                Log.d("debug", "VideoProgressUpdate (ad) -> " + videoProgressUpdate);
+                debug("VideoProgressUpdate (ad) -> " + videoProgressUpdate);
                 return videoProgressUpdate;
             }
         };
@@ -121,12 +121,12 @@ public class VideoPlayerWithAdPlayback {
             @Override
             public VideoProgressUpdate getContentProgress() {
                 if (mIsAdDisplayed || mVideoPlayer.getDuration() <= 0) {
-                    Log.d("debug", "VideoProgressUpdate (content) -> VIDEO_TIME_NOT_READY");
+                    debug("VideoProgressUpdate (content) -> VIDEO_TIME_NOT_READY");
                     return VideoProgressUpdate.VIDEO_TIME_NOT_READY;
                 }
                 VideoProgressUpdate videoProgressUpdate = new VideoProgressUpdate(mVideoPlayer.getCurrentPosition(),
                         mVideoPlayer.getDuration());
-                Log.d("debug", "VideoProgressUpdate (content) -> " + videoProgressUpdate);
+                debug("VideoProgressUpdate (content) -> " + videoProgressUpdate);
                 return videoProgressUpdate;
             }
         };
@@ -274,5 +274,9 @@ public class VideoPlayerWithAdPlayback {
         } else {
             mVideoPlayer.stopPlayback();
         }
+    }
+
+    private void debug(String msg) {
+        Log.d("debug", toString() + " [" + Thread.currentThread().getName() + "] " + msg);
     }
 }

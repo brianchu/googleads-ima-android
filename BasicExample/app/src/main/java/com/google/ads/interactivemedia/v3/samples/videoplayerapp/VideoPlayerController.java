@@ -124,6 +124,7 @@ public class VideoPlayerController implements AdErrorEvent.AdErrorListener,
                 break;
             case ALL_ADS_COMPLETED:
                 if (mAdsManager != null) {
+                    debug("mAdsManager.destroy");
                     mAdsManager.destroy();
                     mAdsManager = null;
                 }
@@ -183,5 +184,9 @@ public class VideoPlayerController implements AdErrorEvent.AdErrorListener,
         if (mAdsManager != null && mVideoPlayerWithAdPlayback.getIsAdDisplayed()) {
             mAdsManager.pause();
         }
+    }
+
+    private void debug(String msg) {
+        Log.d("debug", toString() + " [" + Thread.currentThread().getName() + "] " + msg);
     }
 }
